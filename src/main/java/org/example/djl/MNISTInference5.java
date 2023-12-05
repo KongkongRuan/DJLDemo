@@ -27,6 +27,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+/**
+ * 最终能调用成功的版本
+ */
 public class MNISTInference5 {
 
     public static void main(String[] args) {

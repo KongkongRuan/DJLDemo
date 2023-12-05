@@ -3,51 +3,28 @@ package org.example.djl;
 import ai.djl.Device;
 import ai.djl.MalformedModelException;
 import ai.djl.Model;
-import ai.djl.ModelException;
 import ai.djl.inference.Predictor;
-import ai.djl.modality.Classifications;
 import ai.djl.modality.cv.Image;
 import ai.djl.modality.cv.ImageFactory;
-import ai.djl.modality.cv.transform.Normalize;
-import ai.djl.modality.cv.transform.Resize;
-import ai.djl.modality.cv.transform.ToTensor;
-import ai.djl.modality.cv.translator.ImageClassificationTranslator;
 import ai.djl.modality.cv.util.NDImageUtils;
 import ai.djl.ndarray.NDArray;
 import ai.djl.ndarray.NDList;
 import ai.djl.ndarray.NDManager;
-import ai.djl.pytorch.engine.PtNDArray;
-import ai.djl.pytorch.engine.PtNDArrayEx;
-import ai.djl.pytorch.jni.JniUtils;
-import ai.djl.translate.*;
-import com.alibaba.fastjson2.JSON;
+import ai.djl.translate.Batchifier;
+import ai.djl.translate.TranslateException;
+import ai.djl.translate.Translator;
+import ai.djl.translate.TranslatorContext;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 /**
  * 最终能调用成功的版本
  */
-public class MNISTInference5 {
-
-    public static void main(String[] args) {
-
-        // 1. 加载 PyTorch 模型
-        MNISTInference5 mnistInference5 = new MNISTInference5();
-        Model model = mnistInference5.loadMode();
-//        String imgPath = "D:\\input\\my\\";
-        String imgPath = "D:\\input\\";
-        for (int i = 0; i < 10; i++) {
-            int result = mnistInference5.predictImg(imgPath + i + ".png", model);
-            System.out.println("Predict:"+result);
-            System.out.println("Real:"+i);
-        }
+public class MNISTDetection {
 
 
-    }
 
     public int predictImg(String imgPath,Model model){
         Path picPath = Paths.get(imgPath);

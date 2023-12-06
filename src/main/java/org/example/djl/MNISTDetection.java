@@ -44,9 +44,8 @@ public class MNISTDetection {
     }
 
 
-    public Model loadMode(){
+    public Model loadMode(String modelName){
         String modelPath = "src/main/java/org/example/djl/mod/";
-        String modelName = "model-j.pt";
         Path modelDir = Paths.get(modelPath);
         Model model = Model.newInstance(modelName, Device.cpu(),"PyTorch");
         try {
